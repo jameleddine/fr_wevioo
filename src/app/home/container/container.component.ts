@@ -8,6 +8,18 @@ import { Component, OnInit } from '@angular/core';
 export class ContainerComponent implements OnInit {
   hello:string = "hello";
   count: number = 0;
+  name:string;
+  phone:number;
+  email:string;
+  about:string;
+  HEROES = [
+    {id: 1, name:'Superman'},
+    {id: 2, name:'Batman'},
+    {id: 5, name:'BatGirl'},
+    {id: 3, name:'Robin'},
+    {id: 4, name:'Flash'}
+ ];
+ 
   constructor() { }
 
   ngOnInit() {
@@ -18,5 +30,15 @@ export class ContainerComponent implements OnInit {
   }
   decrement():number{
     return this.count -- ;
+  }
+  
+  saveData(){
+    let data = {
+      name:this.name,
+      email:this.email,
+      phone:this.phone,
+      about:this.about,
+    }
+    console.log(data);
   }
 }

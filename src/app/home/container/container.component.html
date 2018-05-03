@@ -4,3 +4,37 @@
 <button (click)="increment()" class="btn btn-success">+</button>
 {{count}}
 <button (click)="decrement()" class="btn btn-danger" [disabled]="count == 0">-</button>
+<br>
+
+<div class="form-group">
+    <label>Name</label>
+    <input class="form-control" [(ngModel)]="name">
+</div>
+<div class="form-group">
+    <label>Email</label>
+    <input class="form-control" [(ngModel)]="email">
+</div>
+<div class="form-group">
+    <label>Phone</label>
+    <input class="form-control" [(ngModel)]="phone">
+</div>
+<div class="form-group">
+    <label>About</label>
+    <textarea class="form-control" [(ngModel)]="about"></textarea>
+</div>
+<button class="btn btn-success" (click)="saveData()">Submit</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let h of HEROES">
+            <td  [ngClass]="{'class1':h.name=='Batman','class2':h.name!=='Batman'}">{{h.id}}</td>
+            <td id="{{h.id}}" appMydirective class="claddssd">{{h.name}}</td>
+        </tr>
+    </tbody>
+</table>

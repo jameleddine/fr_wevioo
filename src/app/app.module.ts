@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { SidebarComponent } from './home/sidebar/sidebar.component';
 import { ContainerComponent } from './home/container/container.component';
+import { MydirectiveDirective } from './mydirective.directive';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ContainerComponent } from './home/container/container.component';
     HomeComponent,
     NavbarComponent,
     SidebarComponent,
-    ContainerComponent
+    ContainerComponent,
+    MydirectiveDirective
   ],
   imports: [
     BrowserModule,
