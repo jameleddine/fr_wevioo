@@ -1,0 +1,6 @@
+<input class="form-control" [(ngModel)]="hello" (change)="increment()">
+<span>{{hello}}</span>
+
+<button (click)="increment()" class="btn btn-success">+</button>
+{{count}}
+<button (click)="decrement()" class="btn btn-danger" [disabled]="count == 0">-</button>
