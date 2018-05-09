@@ -27,14 +27,36 @@
 <table class="table">
     <thead>
         <tr>
+            <td>Search:</td>
+            <td><input class="form-control" [(ngModel)]="search"></td>
+        </tr>
+        <tr>
             <td>ID</td>
             <td>Name</td>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let h of HEROES">
+        <tr *ngFor="let h of HEROES | myfilter:search">
             <td  [ngClass]="{'class1':h.name=='Batman','class2':h.name!=='Batman'}">{{h.id}}</td>
             <td id="{{h.id}}" appMydirective class="claddssd">{{h.name}}</td>
         </tr>
     </tbody>
 </table>
+<form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Favorite food" value="Sushi">
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Leave a comment"></textarea>
+        </mat-form-field>
+      </form>
+      
+<mat-radio-group>
+
+ <mat-radio-button value="1">Option 1</mat-radio-button>
+ <mat-radio-button value="2">Option 2</mat-radio-button>
+
+</mat-radio-group>
+
+  
