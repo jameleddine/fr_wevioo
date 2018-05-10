@@ -8,13 +8,23 @@ import {HttpClient} from '@angular/common/http';
 })
 export class DashboardComponent implements OnInit {
 result :any = [];
+contract:string;
+date:Date;
+title:string;
+
   constructor(private http : HttpClient) { }
 
   ngOnInit() {
     this.getPostList();
   }
-
+  resetPipe(){
+    this.contract="";
+    this.date=null;
+    this.title="";
+  }
   getPostList(){
-    this.result = this.http.get('http://localhost:3000/posts');
+   this.http.get('http://localhost:3000/posts').subscribe(data=>{
+    this.result = data;
+   })
   }
 }

@@ -5,8 +5,24 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class MyfilterPipe implements PipeTransform {
 
-  transform(items: any[], term): any {
-    console.log('term', term);     
-    return term ? items.filter(item => item.name.toLowerCase().indexOf(term.toLowerCase()) !== -1): items;
+  transform(items: any[], title,contract,date): any {
+
+    if (items && items.length){
+      return items.filter(item =>{
+          if (title && item.title.toLowerCase().indexOf(title.toLowerCase()) === -1){
+              return false;
+          }
+          if (contract && item.contract_type[0].toLowerCase().indexOf(contract.toLowerCase()) === -1){
+              return false;
+          }
+          if (date && item.entry_date.indexOf(date) === -1){
+              return false;
+          }
+          return true;
+     })
+  }
+  else{
+      return items;
+  }
 }
 }

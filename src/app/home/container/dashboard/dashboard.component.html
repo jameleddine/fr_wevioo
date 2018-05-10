@@ -1,4 +1,46 @@
-<p>
-  dashboard works!
-</p>
-{{result|json}}
+<section class="container">
+
+<h2>Offre list</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <td>Title</td>
+      <td>Description</td>
+      <td>Contract Type</td>
+      <td>Entry Date</td>
+      <td>Salaire</td>
+      <td>Status</td>
+      <td>Action</td>
+    </tr>
+    <tr>
+        <td><input type="text" class="form-control" placeholder="Offre title" [(ngModel)]="title"></td>
+        <td></td>
+        <td>
+            <select [(ngModel)]="contract" class="form-control">
+                <option value="cdi">CDI</option>
+                <option value="cdd">CDD</option>
+                <option value="sivp">SIVP</option>
+              </select>
+        </td>
+        <td><input type="date" class="form-control" placeholder="Date" [(ngModel)]="date"></td>
+        <td><button type="button" class="btn btn-info" (click)="resetPipe()">Reset Pipes</button></td>
+        <td></td>
+        <td></td>
+      </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of result|myfilter:title:contract:date">
+      <td>{{r.title}}</td>
+      <td>{{r.description}}</td>
+      <td>{{r.contract_type}}</td>
+      <td>{{r.entry_date}}</td>
+      <td>{{r.salaire}}</td>
+      <td>{{r.status}}</td>
+      <td style="display:inline-flex">
+          <mat-icon [routerLink]="['detail',r._id]">remove_red_eye</mat-icon>
+          <mat-icon >delete_forever</mat-icon>
+        </td>
+    </tr>
+  </tbody>
+</table>
+</section>
