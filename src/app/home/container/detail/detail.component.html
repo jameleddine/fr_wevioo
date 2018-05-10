@@ -1,3 +1,33 @@
-<p>
-  detail works!
-</p>
+
+<h3>Offre N° {{offre._id}}</h3>
+<div class="form-group">
+    <label>Title:</label>
+    <input type="text" [(ngModel)]="offre.title" class="form-control">
+</div>
+<div class="form-group">
+    <label>Description:</label>
+    <input type="text" [(ngModel)]="offre.description" class="form-control">
+</div>
+<div class="form-group">
+    <label>Entry Date:</label>
+    <input type="date" [(ngModel)]="offre.entry_date" class="form-control">
+</div>
+<div class="form-group">
+    <label>Contract:</label>
+    <select  [(ngModel)]="offre.contract_type" class="form-control">
+        <option value="{{offre.contract_type}}">{{offre.contract_type}}</option>
+        <option value="cdi">CDI</option>
+        <option value="cdd">CDD</option>
+        <option value="sivp">SIVP</option>
+    </select>
+</div>
+<div class="form-group">
+    <select  [(ngModel)]="offre.status" class="form-control">
+        <option value="{{offre.status}}">{{offre.status}}</option>
+        <option value="ongoing">On going</option>
+        <option value="closed">Closed</option>
+    </select>
+</div>
+<button class="btn btn-success" (click)="updateDate(offre)">Update Offre</button>
+
+
