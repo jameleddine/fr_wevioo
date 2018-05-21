@@ -5,7 +5,15 @@ import { FormsModule } from '@angular/forms'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module'
 import { RouterModule, Routes } from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule,HttpClient} from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+export function HttpLoaderFactory(httpClient: HttpClient) {
+    return new TranslateHttpLoader(httpClient, "./assets/i18n/", ".json");
+}
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -17,11 +25,15 @@ import { MyfilterPipe } from './myfilter.pipe';
 import { DashboardComponent } from './home/container/dashboard/dashboard.component';
 import { DetailComponent } from './home/container/detail/detail.component';
 import { AjoutComponent } from './home/container/ajout/ajout.component';
+import { LoginComponent } from './home/container/login/login.component';
+import { InscriptionComponent } from './home/container/inscription/inscription.component';
 
 const mesRoutes:Routes = [
   {path:'',component:DashboardComponent},
   {path:'ajout',component:AjoutComponent},
   {path:'detail/:id',component:DetailComponent},
+  {path:'login',component:LoginComponent},
+  {path:'inscription',component:InscriptionComponent},
 ];
 
 @NgModule({
@@ -35,7 +47,9 @@ const mesRoutes:Routes = [
     MyfilterPipe,
     DashboardComponent,
     DetailComponent,
-    AjoutComponent
+    AjoutComponent,
+    LoginComponent,
+    InscriptionComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +57,22 @@ const mesRoutes:Routes = [
     BrowserAnimationsModule,
     MaterialModule,
     RouterModule.forRoot(mesRoutes),
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    SweetAlert2Module.forRoot({
+      buttonsStyling: false,
+      customClass: 'modal-content',
+      confirmButtonClass: 'btn btn-primary',
+      cancelButtonClass: 'btn'
+  })
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -23,8 +23,9 @@
 </div>
 <div class="form-group">
     <select  [(ngModel)]="offre.status" class="form-control">
-        <option value="{{offre.status}}">{{offre.status}}</option>
+        <option value="{{offre.status}}" disabled>{{offre.status}}</option>
         <option value="ongoing">On going</option>
+        <option value="to Validate">To validate</option>
         <option value="closed">Closed</option>
     </select>
 </div>

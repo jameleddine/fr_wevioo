@@ -18,7 +18,11 @@
      
     </ul>
     <form class="form-inline my-2 my-md-0">
-      <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+        <a class="nav-link" [routerLink]="['login']">Login</a>
+        <a class="nav-link" [routerLink]="['inscription']">Inscription</a>
+        <select #langSelect (change)="translate.use(langSelect.value)" class="form-control">
+            <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+          </select>
     </form>
   </div>
 </nav>

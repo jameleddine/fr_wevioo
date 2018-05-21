@@ -1,6 +1,6 @@
 <section class="container">
 
-<h2>Offre list</h2>
+<h2>{{'offre'|translate}}</h2>
 <table class="table">
   <thead>
     <tr>
@@ -35,10 +35,13 @@
       <td>{{r.contract_type}}</td>
       <td>{{r.entry_date}}</td>
       <td>{{r.salaire}}</td>
-      <td>{{r.status}}</td>
+      <td><span [ngClass]="{'ongoing':r.status=='ongoing','closed':r.status=='closed','tovalidate':r.status=='to Validate'}">{{r.status}}</span></td>
       <td style="display:inline-flex">
           <mat-icon [routerLink]="['detail',r._id]">remove_red_eye</mat-icon>
-          <mat-icon >delete_forever</mat-icon>
+          <mat-icon [swal]="{ title: 'Are you sure you want to delete this poste !!!'}"
+          (confirm)="deletePostById(r._id)"
+          >delete_forever</mat-icon>
+          
         </td>
     </tr>
   </tbody>

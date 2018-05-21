@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MycrudService } from '../../../shared/mycrud.service';
 
 @Component({
   selector: 'app-ajout',
   templateUrl: './ajout.component.html',
-  styleUrls: ['./ajout.component.css']
+  styleUrls: ['./ajout.component.css'],
+  providers:[MycrudService]
 })
 export class AjoutComponent implements OnInit {
 title:string;
@@ -13,7 +15,7 @@ description:string;
 contract_type:string;
 entry_date:Date;
 salaire:string;
-  constructor(private http:HttpClient,private router:Router) { }
+  constructor(private http:HttpClient,private router:Router,private crud:MycrudService) { }
 
   ngOnInit() {
   }
@@ -25,7 +27,7 @@ salaire:string;
       entry_date:this.entry_date,
       salaire:this.salaire
     }
-    this.http.post('http://localhost:3000/posts',data).subscribe(data=>{
+    this.crud.addNewOffre(data).subscribe(data=>{
       console.log(data);
       if(data){
         this.router.navigate(['/']);

@@ -24,6 +24,18 @@ title:string;
     this.title="";
   }
   getPostList(){
-    this.myservice.getAllOffres().subscribe(data=>this.result = data)
+    this.myservice.getAllOffres().subscribe(data=>{
+      this.result = data
+      this.result.entry_date = this.result.entry_date.splice(0,10);
+    })
   }
+
+  deletePostById(id){
+    this.myservice.deleteOffreById(id).subscribe(data=>{
+      console.log(data)
+      this.result = data;
+      this.getPostList();
+    })
+  }
+
 }

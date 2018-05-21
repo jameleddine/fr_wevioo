@@ -11,7 +11,7 @@ import {MycrudService} from './../../../shared/mycrud.service';
 export class DetailComponent implements OnInit {
   idOffre:any;
   offre:any = [];
-  constructor(private router:ActivatedRoute,private http:HttpClient,private myservice: MycrudService) { }
+  constructor(private router:ActivatedRoute,private http:HttpClient,private myservice: MycrudService,private re:Router) { }
 
   ngOnInit() {
     this.getOffreById();
@@ -22,14 +22,16 @@ export class DetailComponent implements OnInit {
       this.idOffre = data['id'];
       this.myservice.getOffreById(this.idOffre).subscribe(offre=>{
         this.offre = offre;
+        this.offre.entry_date = this.offre.entry_date.slice(0,10);
       })
     });
 
   }
 
   updateDate(data){
-    this.http.put('http://localhost:3000/post/'+data._id,data).subscribe(result=>{
+    this.myservice.updateOffreById(data._id,data).subscribe(result=>{
       console.log(result)
+      this.re.navigate(['/'])
     })
   }
 
